@@ -1,3 +1,5 @@
+//Question :-
+//What is the difference between ++i and i++?
 let i=1;
 //Post Incrementation
 console.log(i++);//output = 1
