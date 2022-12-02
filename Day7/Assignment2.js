@@ -29,9 +29,9 @@ function filterObject(obj) {
   let newObject = {};
   arrayOfEntries.forEach((arr) => {
     if (typeof arr[1] != "object") {
-      let str = arr[0];
+      
       //newObject={arr:arr[1]}
-      newObject[`${str}`] = arr[1];
+      newObject[`${arr[0]}`] = arr[1];
     }
   });
   return newObject;
