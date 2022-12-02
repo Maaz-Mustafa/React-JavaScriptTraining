@@ -28,7 +28,7 @@ function filterObject(obj) {
   const arrayOfEntries = Object.entries(obj);
   let newObject = {};
   arrayOfEntries.forEach((arr) => {
-    if (typeof arr[1] != "object") {
+    if (typeof arr[1] !== "object") {
       
       //newObject={arr:arr[1]}
       newObject[`${arr[0]}`] = arr[1];

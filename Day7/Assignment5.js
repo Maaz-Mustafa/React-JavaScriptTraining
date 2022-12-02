@@ -35,16 +35,22 @@ console.log(sort(users, "first_name","asc")); //Should return users sorted by fi
 //--------------------------------------- My code --------------------------------------
 function sort(usersArray,spkey,order){
     let newArray;
-    if(order==="asc"){
-        newArray=usersArray.sort((a,b)=>{
+    // if(order==="asc"){
+    //     newArray=usersArray.sort((a,b)=>{
+    //         return a[spkey]>b[spkey]?1:-1;
+    //     })
+    // }
+    // else if(order==="desc"){
+    //     newArray=usersArray.sort((a,b)=>{
+    //         return b[spkey]>a[spkey]?1:-1;
+    //     })
+    // }
+    newArray=usersArray.sort((a,b)=>{
+        if(order==="asc")
             return a[spkey]>b[spkey]?1:-1;
-        })
-    }
-    else if(order==="desc"){
-        newArray=usersArray.sort((a,b)=>{
+        else if(order==="desc")
             return b[spkey]>a[spkey]?1:-1;
-        })
-    }
+    })
     
     return newArray;
 }
