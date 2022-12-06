@@ -114,35 +114,56 @@ const arr1=sortById(userNames);
 const arr2=sortById(userEmails);
   
 
+
+
+// function mergeById(arr1,arr2){
+    
+//         let newObjArray=[]
+//         let i=0;
+//         while(i<arr1.length){
+//             newObjArray.push({
+//                 ...arr1[i],
+//                 ...arr2[i]
+//             })
+//             i++;
+//         }
+//         return newObjArray
+    
+// }
+
+
 const mergeById = (arr1, arr2) => {
-    let i = 0;
-    let j = 0;
-    let result = [];
-    arr1.length - 1 >= i;
-    while (i < arr1.length && j < arr2.length) {
-      if (arr1[i]["id"] > arr2[j]["id"]) {
-        result.push(arr2[j]);
-        j++;
-      } else if (arr1[i]["id"] < arr2[j]["id"]) {
-        result.push(arr1[i]);
-        i++;
-      } else {
-        result.push({ ...arr1[i], ...arr2[j] });
-        i++;
-        j++;
-      }
-    }
-  
-    while (i < arr1.length) {
-      result.push(arr1[i]);
-      i++;
-    }
-  
-    while (j < arr2.length) {
+  let i = 0;
+  let j = 0;
+  let result = [];
+  arr1.length - 1 >= i;
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i]["id"] > arr2[j]["id"]) {
       result.push(arr2[j]);
       j++;
+    } else if (arr1[i]["id"] < arr2[j]["id"]) {
+      result.push(arr1[i]);
+      i++;
+    } else {
+      result.push({ ...arr1[i], ...arr2[j] });
+      i++;
+      j++;
     }
-    return result;
-  };
-  
+  }
+
+  while (i < arr1.length) {
+    result.push(arr1[i]);
+    i++;
+  }
+
+  while (j < arr2.length) {
+    result.push(arr2[j]);
+    j++;
+  }
+  return result;
+};
+
+
 console.log(mergeById(arr1,arr2));
+
+
