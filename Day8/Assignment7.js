@@ -2,15 +2,16 @@
 // 7. Complete the above tasks with async/await.
 
 const Users = fetch("https://reqres.in/api/users");
-
+let timer;
 async function getUsers() {
   const data = await Users;
   //console.log(Users);
-  setTimeout(() => {
+  timer=setTimeout(() => {
     console.log(data);
   }, 2000);
 }
 getUsers();
+clearTimeout(timer)
 
 let i = 1;
 const interval = setInterval(() => {

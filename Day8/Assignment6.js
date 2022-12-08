@@ -3,12 +3,15 @@
 // only 2 seconds after the data has been received in the fetch.
 
 const getUsers = fetch("https://reqres.in/api/users");
-
+let timer;
 getUsers.then((data) => {
-  setTimeout(() => {
+   timer=setTimeout(() => {
     console.log(data);
   }, 2000);
 });
+
+clearTimeout(timer);
+
 
 let i = 1;
 const interval = setInterval(() => {
