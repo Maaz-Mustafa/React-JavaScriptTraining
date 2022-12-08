@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let a;
+
+        //logging variable a before assigning a value
+        console.log(a);//output=undefined
+
+        //Now assigning value to variable a
+        a="hello";
+
+        //again logging var a after initialising it
+        console.log(a);//output=hello
+
+        const variable=1;
+        // it is mandatory to assign value to a const variable while declaration itself as we can't reassign value to it later 
+        console.log(variable);
+
+
+    </script>
+</head>
+<body>
+    <!-- ------------------------- Using Type of Operator ---------------------- -->
+    <script>
+        let b="Hello world"
+
+        console.log(typeof b);//output = string
+
+        var c=1;
+        console.log(typeof c);//output = number
+
+        let arr=[1,2,3,4,5];
+        console.log(typeof arr);//output = object
+
+        let d=null;
+        console.log(typeof d);//output = object 
+
+        let e=NaN;
+        console.log(typeof e);//output = number 
+
+        let u;
+        console.log(typeof u);//output = undefined
+    </script>
+
+    <h1>Assignment Number 1</h1>
+    <script>
+
+        //Que) How can you find if a variable is an array or NaN besides typeof
+        
+        let stringArray=["yes","no","maybe"];
+        //let stringArray="not an array";      this falls under else block as Array.isArray returns false
+        if(Array.isArray(stringArray)){
+            console.log("The variable is an array")
+        }
+        else{
+            console.log("The variable is not an array");
+        }
+
+        let number=1223;      //else block executes as it is a Number
+        //let number=NaN      //if block executes as isNaN returns true
+        if(isNaN(number)){
+            console.log("not a number")
+        }
+        else{
+            console.log("Number");
+        }
+
+    </script>
+
+</body>
+</html>
