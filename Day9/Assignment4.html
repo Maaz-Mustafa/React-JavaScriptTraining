@@ -1,0 +1,75 @@
+<!--  Question :-
+ Create  blog list page that fetches a list of users from a mock API and 
+ adds them to a table on the page after loading. Add a button to sort the users by name.
+ Add an input to filter the table by search. 
+ (Optional: Show “Loading…” or a loading spinner on the screen till the data loads) 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let usersArray=[];
+        const data=fetch("https://reqres.in/api/users?page=2")
+        .then(res=>res.json())
+        .then(users=>{
+            usersArray=users.data;
+            //console.log(users.data);
+            fillDataInTable(usersArray)
+
+        })
+        function fillDataInTable(arr){
+            let str="<table border='1' cellspacing='3px'cellpadding='5px' style='border-collapse:collapse'><tr><th>Id</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Avatar</th></tr>";
+            for(let i=0;i<arr.length;i++){
+                str+="<tr>";
+                    str+="<td>"+arr[i].id+"</td>";
+                    str+="<td>"+arr[i].email+"</td>";
+                    str+="<td>"+arr[i].first_name+"</td>";
+                    str+="<td>"+arr[i].last_name+"</td>";
+                    str+="<td><img src='"+arr[i].avatar+"'/></td>";
+                str+="</tr>"
+            }
+            str+="</table>"
+            document.getElementById("div").innerHTML=str;
+        }
+
+        function sortByName(){
+            const sortedByNames=usersArray.sort((user1,user2)=>{
+                return user1.first_name>user2.first_name?1:-1;
+            })
+            fillDataInTable(sortedByNames)
+        }
+
+        function filterArray(){
+            
+            let searchingFor=document.getElementById("search").value;
+            let filteredArray=usersArray.filter((element)=>{
+                if(element.first_name.includes(searchingFor))
+                    return true;
+                else
+                    return false;
+            })
+            console.log(searchingFor);
+            console.log(filteredArray);
+            fillDataInTable(filteredArray);
+        }
+    </script>
+</head>
+<body>
+    Search By : <select>
+        <option>name</option>
+    </select>
+    <input type="text" id="search" name="filter" onkeyup="filterArray()"/>
+    <!-- <button id="search" onclick="filterArray()">Search</button> -->
+    <div id="div">
+
+    </div>
+    <button id="sort" onclick="sortByName()" >sort</button>
+    
+
+    
+</body>
+</html>
