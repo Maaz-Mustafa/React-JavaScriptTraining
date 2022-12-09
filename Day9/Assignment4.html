@@ -46,9 +46,9 @@
         function filterArray(){
             
             let searchingFor=document.getElementById("search").value;
-            let filteredArray=usersArray.filter((element)=>{
-                return element.first_name.includes(searchingFor)
-            })
+            let filteredArray=usersArray.filter((element)=>
+                element.first_name.includes(searchingFor)
+            )
             console.log(searchingFor);
             console.log(filteredArray);
             fillDataInTable(filteredArray);
