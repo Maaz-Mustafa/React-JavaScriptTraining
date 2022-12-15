@@ -1,38 +1,48 @@
 import { useState } from "react";
 
-const AddToList = (props) => {
+const AddToList = ({ handleAdd }) => {
+  const [task, setTask] = useState("");
+  const [ddate, setDdate] = useState("");
 
-    
-    const [task,setTask]=useState("");
-    const [ddate,setDdate]=useState("");
+  const handleTask = (e) => {
+    setTask(e.target.value);
+  };
+  const handleDdate = (e) => {
+    setDdate(e.target.value);
+  };
+  return (
+    <div>
+      <form>
+        <table>
+          <tr>
+            <td>Task</td>
+            <td>
+              <input type="text" name="task" onBlur={handleTask} />
+            </td>
+          </tr>
+          <tr>
+            <td>Due Date</td>
+            <td>
+              <input type="date" name="ddate" onBlur={handleDdate} />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <input
+                type="button"
+                name="add"
+                value="Add"
+                onClick={() => {
+                  handleAdd(task, ddate);
+                }}
+              />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  );
+};
 
-    return ( 
-        <div>
-            <form>
-                <table>
-                    <tr>
-                        <td>Task</td>
-                        <td><input type="text" name="task" 
-                        onBlur={(e)=>{setTask(e.target.value)}}
-                        /></td>
-                    </tr>
-                    <tr>
-                        <td>Due Date</td>
-                        <td><input type="date" name="ddate"
-                        onBlur={(e)=>{setDdate(e.target.value)}}
-                        /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="button" name="add"value="Add" 
-                        onClick={()=>{props.handleAdd(task,ddate)}}
-                        /></td>
-                    </tr>
-                     
-                </table>
-            </form>
-        </div>
-     );
-}
- 
 export default AddToList;
