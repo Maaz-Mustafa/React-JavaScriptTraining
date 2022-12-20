@@ -31,9 +31,8 @@ const Home = () => {
         id: list.length + 1,
         task: task,
         dueDtae: ddate.toString(),
-        status: "Active",
+        status: false,
       };
-      console.log(obj.status);
       setList([...list, obj]);
       setIsBlockHidden(false);
     }

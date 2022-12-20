@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const ToDoList = ({ list, handleDelete, changeStatus, openDiv }) => {
   return (
     <div>
