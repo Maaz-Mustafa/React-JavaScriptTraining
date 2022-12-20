@@ -2,35 +2,15 @@ import { useState } from "react";
 import AddToList from "./AddToList";
 import ToDoList from "./ToDoList";
 import "./styling.css";
+import { data } from "../Model/data.js";
 
 const Home = () => {
-  const [list, setList] = useState([
-    {
-      id: 1,
-      task: "To complete Assignments on React",
-      dueDtae: "14-12-2022",
-      status: "Active",
-    },
-    {
-      id: 2,
-      task: "Submit The Assignments of Java Script",
-      dueDtae: "13-12-2022",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      task: "Project Selection",
-      dueDtae: "20-12-2022",
-      status: "Active",
-    },
-  ]);
+  const [list, setList] = useState(data);
   const [isBlockHidden, setIsBlockHidden] = useState(false);
   const changeStatus = (check, id) => {
     const updatedStatusArray = list.map((obj) => {
-      if (obj.id === id && check == true) {
-        obj.status = "Completed";
-      } else if (obj.id === id && check === false) {
-        obj.status = "Active";
+      if (obj.id === id) {
+        obj.status = check;
       }
       return obj;
     });
@@ -53,7 +33,7 @@ const Home = () => {
         dueDtae: ddate.toString(),
         status: "Active",
       };
-
+      console.log(obj.status);
       setList([...list, obj]);
       setIsBlockHidden(false);
     }
@@ -70,10 +50,10 @@ const Home = () => {
           handleDelete={handleDelete}
         />
         <div
-          className="HiddenBlock"
+          className="Modal"
           style={{ display: isBlockHidden ? "block" : "none" }}
         >
-          <AddToList handleAdd={handleAdd} />
+          <AddToList handleAdd={handleAdd} openDiv={openDiv} />
         </div>
       </div>
     </div>

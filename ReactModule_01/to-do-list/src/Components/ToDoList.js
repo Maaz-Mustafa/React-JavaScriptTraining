@@ -3,8 +3,11 @@ import { useState } from "react";
 const ToDoList = ({ list, handleDelete, changeStatus, openDiv }) => {
   return (
     <div>
-      <h1>To DO List</h1>
+      <h1 className="header">To DO List</h1>
       <br />
+      <button className="btn header" onClick={openDiv}>
+        Add a new Task
+      </button>
       <table cellSpacing={10}>
         {list.map((item) => {
           return (
@@ -13,6 +16,7 @@ const ToDoList = ({ list, handleDelete, changeStatus, openDiv }) => {
                 <input
                   type="checkbox"
                   id={item.id}
+                  checked={item.status}
                   onClick={(e) => {
                     changeStatus(e.target.checked, item.id);
                   }}
@@ -20,12 +24,13 @@ const ToDoList = ({ list, handleDelete, changeStatus, openDiv }) => {
               </td>
               <td>{item.task}</td>
               <td>{item.dueDtae}</td>
-              <td>{item.status}</td>
+              <td>{item.status ? "Completed" : "Active"}</td>
               <td>
                 <button
                   onClick={() => {
                     handleDelete(item.id);
                   }}
+                  className="btn btn-danger"
                 >
                   remove
                 </button>
@@ -34,7 +39,6 @@ const ToDoList = ({ list, handleDelete, changeStatus, openDiv }) => {
           );
         })}
       </table>
-      <button onClick={openDiv}>Add a new Task</button>
     </div>
   );
 };

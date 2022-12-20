@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddToList = ({ handleAdd }) => {
+const AddToList = ({ handleAdd, openDiv }) => {
   const [task, setTask] = useState("");
   const [ddate, setDdate] = useState("");
 
@@ -11,7 +11,13 @@ const AddToList = ({ handleAdd }) => {
     setDdate(e.target.value);
   };
   return (
-    <div>
+    <div className="Modal-content">
+      Add a new Task{" "}
+      <button className="btn btn-div-close" onClick={openDiv}>
+        {" "}
+        X{" "}
+      </button>
+      <hr />
       <form>
         <table>
           <tr>
@@ -31,6 +37,7 @@ const AddToList = ({ handleAdd }) => {
             <td>
               <input
                 type="button"
+                className="btn btn-primary"
                 name="add"
                 value="Add"
                 onClick={() => {
