@@ -3,10 +3,13 @@ import AddToList from "./AddToDoList";
 import ToDoList from "./ToDoList";
 import "./styling.css";
 import useFetch from "../customHook/useFetch";
+import DeleteFromList from "./DeleteFromList";
 
 const Home = () => {
   const [list, setList] = useState([]);
+  const [idToDel, setIdToDel] = useState();
   const [isBlockHidden, setIsBlockHidden] = useState(false);
+  const [isDelBlockHidden, setIsDelBlockHidden] = useState(false);
   const { loading, error, data } = useFetch();
   useEffect(() => {
     setList(data);
@@ -25,10 +28,16 @@ const Home = () => {
   const handleDelete = (id) => {
     const resltArray = list.filter((filteredItem) => id !== filteredItem.id);
     setList(resltArray);
+    openDelDiv();
   };
   const openDiv = () => {
     let condition = !isBlockHidden ? true : false;
     setIsBlockHidden(condition);
+  };
+  const openDelDiv = (id) => {
+    let condition = !isDelBlockHidden ? true : false;
+    setIsDelBlockHidden(condition);
+    setIdToDel(id);
   };
   const handleAdd = (task, ddate) => {
     if (task !== "" && ddate !== "") {
@@ -54,12 +63,22 @@ const Home = () => {
           openDiv={openDiv}
           changeStatus={changeStatus}
           handleDelete={handleDelete}
+          openDelDiv={openDelDiv}
         />
         <div
           className="Modal"
           style={{ display: isBlockHidden ? "block" : "none" }}
         >
           <AddToList handleAdd={handleAdd} openDiv={openDiv} />
+        </div>
+        <div
+          className="Modal"
+          style={{ display: isDelBlockHidden ? "block" : "none" }}
+        >
+          <DeleteFromList
+            handleDelete={() => handleDelete(idToDel)}
+            openDelDiv={openDelDiv}
+          />
         </div>
       </div>
     </div>

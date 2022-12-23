@@ -2,7 +2,7 @@ import Loader from "./Loader";
 
 const ToDoList = ({
   list,
-  handleDelete,
+  openDelDiv,
   changeStatus,
   openDiv,
   loading,
@@ -42,7 +42,8 @@ const ToDoList = ({
                   <td>
                     <button
                       onClick={() => {
-                        handleDelete(item.id);
+                        // handleDelete(item.id);
+                        openDelDiv(item.id);
                       }}
                       className="btn btn-danger"
                     >

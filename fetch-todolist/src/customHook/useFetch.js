@@ -11,15 +11,15 @@ const useFetch = () => {
         return resp.json();
       })
       .then((todolist) => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           setData(todolist);
           setLoading(false);
+          clearTimeout(timer);
         }, 1000);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
-        console.log(err.message);
       });
   }, []);
 

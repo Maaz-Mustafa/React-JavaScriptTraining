@@ -62,3 +62,12 @@
   .text-danger{
     color:red;
   }
+
+  .modal-style{
+    margin:50px;
+    margin-left: 30%;
+    padding:5px;
+  }
+  .btn-padding{
+    padding: 6px;
+  }

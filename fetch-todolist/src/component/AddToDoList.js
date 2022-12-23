@@ -40,9 +40,7 @@ const AddToList = ({ handleAdd, openDiv }) => {
                 className="btn btn-primary"
                 name="add"
                 value="Add"
-                onClick={() => {
-                  handleAdd(task, ddate);
-                }}
+                onClick={() => handleAdd(task, ddate)}
               />
             </td>
           </tr>

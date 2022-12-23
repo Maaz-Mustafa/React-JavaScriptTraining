@@ -1,12 +1,12 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Spinner } from "reactstrap";
+
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 function Loader() {
   return (
     <div className="header">
       <br />
-      <Spinner style={{ width: "2rem", height: "2rem" }} />
+      <PacmanLoader color="#c9290d" />
     </div>
   );
 }
