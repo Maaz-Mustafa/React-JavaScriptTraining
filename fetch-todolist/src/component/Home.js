@@ -4,6 +4,7 @@ import ToDoList from "./ToDoList";
 import "./styling.css";
 import useFetch from "../customHook/useFetch";
 import DeleteFromList from "./DeleteFromList";
+import { Route, Routes } from "react-router-dom";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -65,12 +66,19 @@ const Home = () => {
           handleDelete={handleDelete}
           openDelDiv={openDelDiv}
         />
-        <div
+        {/* <div
           className="Modal"
           style={{ display: isBlockHidden ? "block" : "none" }}
         >
           <AddToList handleAdd={handleAdd} openDiv={openDiv} />
-        </div>
+        </div> */}
+        <Routes>
+          {/* <Route
+            path="/addTask"
+            element={<AddToList handleAdd={handleAdd} />}
+          /> */}
+        </Routes>
+
         <div
           className="Modal"
           style={{ display: isDelBlockHidden ? "block" : "none" }}
