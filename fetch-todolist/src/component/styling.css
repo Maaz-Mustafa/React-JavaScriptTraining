@@ -95,3 +95,7 @@
   border-radius: 50px;
   box-shadow: 1px 10px 100px 10px red;
 }
+
+.task-info-div{
+  margin:30px;
+}

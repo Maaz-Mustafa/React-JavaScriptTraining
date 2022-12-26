@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import AddToList from "./AddToDoList";
 import ToDoList from "./ToDoList";
-import "./styling.css";
 import useFetch from "../customHook/useFetch";
 import DeleteFromList from "./DeleteFromList";
-import { Route, Routes } from "react-router-dom";
+import "./styling.css";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -39,18 +37,6 @@ const Home = () => {
     let condition = !isDelBlockHidden ? true : false;
     setIsDelBlockHidden(condition);
     setIdToDel(id);
-  };
-  const handleAdd = (task, ddate) => {
-    if (task !== "" && ddate !== "") {
-      const obj = {
-        id: list.length + 1,
-        task: task,
-        dueDtae: ddate.toString(),
-        status: false,
-      };
-      setList([...list, obj]);
-      setIsBlockHidden(false);
-    }
   };
 
   return (

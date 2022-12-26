@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddToList = ({ openDiv }) => {
   const [task, setTask] = useState("");
@@ -29,9 +29,8 @@ const AddToList = ({ openDiv }) => {
     <div className="Modal">
       <div className="Modal-content">
         Add a new Task{" "}
-        <button className=" btn-div-close" onClick={openDiv}>
-          {" "}
-          X{" "}
+        <button className=" btn-div-close">
+          <Link to="/"> X </Link>
         </button>
         <hr />
         <form>
