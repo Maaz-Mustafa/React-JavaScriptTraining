@@ -66,18 +66,6 @@ const Home = () => {
           handleDelete={handleDelete}
           openDelDiv={openDelDiv}
         />
-        {/* <div
-          className="Modal"
-          style={{ display: isBlockHidden ? "block" : "none" }}
-        >
-          <AddToList handleAdd={handleAdd} openDiv={openDiv} />
-        </div> */}
-        <Routes>
-          {/* <Route
-            path="/addTask"
-            element={<AddToList handleAdd={handleAdd} />}
-          /> */}
-        </Routes>
 
         <div
           className="Modal"
