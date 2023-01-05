@@ -20,14 +20,8 @@
     },
     {
       "id": 4,
-      "task": "My Name is Maaz",
-      "dueDtae": "2022-12-22",
-      "status": false
-    },
-    {
-      "id": 5,
-      "task": "My Name is Maaz",
-      "dueDtae": "2022-12-28",
+      "task": "Prashant's Wedding",
+      "dueDtae": "2023-02-14",
       "status": false
     }
   ]

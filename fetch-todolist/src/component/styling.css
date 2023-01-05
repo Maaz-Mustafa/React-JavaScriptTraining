@@ -12,11 +12,15 @@
 .btn-danger{
     background-color: red;
     color: white;
+    padding:8px;
+    border-radius: 25px;
 }
 
 .btn-primary{
-    background-color: rgb(29, 136, 224);
+    background-color:skyblue;
     color: white;
+    padding:8px;
+    border-radius: 25px;
 }
 
 .header{
@@ -62,6 +66,9 @@
   .text-danger{
     color:red;
   }
+  .text-success{
+    color:green;
+  }
 
   .modal-style{
     margin:50px;
@@ -78,9 +85,10 @@
 
 .task-links{
   text-decoration: none;
+  color:black;
 }
 .task-links:hover{
-  color: red;
+  color: blue;
   text-decoration:underline;
 }
 .task-style{
@@ -88,7 +96,7 @@
   padding:50px;
   top:30%;
   left:30%;
-  width:30%;
+  width:auto;
   height: 40%;
   font-size: 20px;
   border: 1px solid red;
@@ -98,4 +106,19 @@
 
 .task-info-div{
   margin:30px;
+}
+.strike{
+  text-decoration: line-through;
+  color: red;
+}
+.filter-bar{
+  margin:15px;
+}
+.filter-bar select,input{
+  height: 28px;
+  margin-right: 20px;
+}
+.filter-bar label{
+  margin-right: 5px;
+  font-size: \;
 }
