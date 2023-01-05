@@ -1,0 +1,19 @@
+<html>
+<title>Assignment 2</title>
+<head>
+<script>
+function content(){
+	document.getElementById("test").innerHTML="Goodbye World";
+}
+function revert(){
+	document.getElementById("test").innerHTML="Hello World!";
+}
+</script>
+</head>
+<body>
+
+<h1 id="test" onmouseover="content()" onmouseout="revert()" style="height:50px;width:220px">Hello World!</h1>
+<!--<button onclick="content()">Change Content</button>-->
+
+</body>
+</html>
