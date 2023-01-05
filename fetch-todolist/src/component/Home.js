@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import AddToList from "./AddToDoList";
 import ToDoList from "./ToDoList";
-import "./styling.css";
 import useFetch from "../customHook/useFetch";
 import DeleteFromList from "./DeleteFromList";
+import "./styling.css";
 
 const Home = () => {
   const [list, setList] = useState([]);
@@ -39,18 +38,6 @@ const Home = () => {
     setIsDelBlockHidden(condition);
     setIdToDel(id);
   };
-  const handleAdd = (task, ddate) => {
-    if (task !== "" && ddate !== "") {
-      const obj = {
-        id: list.length + 1,
-        task: task,
-        dueDtae: ddate.toString(),
-        status: false,
-      };
-      setList([...list, obj]);
-      setIsBlockHidden(false);
-    }
-  };
 
   return (
     <div>
@@ -65,12 +52,7 @@ const Home = () => {
           handleDelete={handleDelete}
           openDelDiv={openDelDiv}
         />
-        <div
-          className="Modal"
-          style={{ display: isBlockHidden ? "block" : "none" }}
-        >
-          <AddToList handleAdd={handleAdd} openDiv={openDiv} />
-        </div>
+
         <div
           className="Modal"
           style={{ display: isDelBlockHidden ? "block" : "none" }}

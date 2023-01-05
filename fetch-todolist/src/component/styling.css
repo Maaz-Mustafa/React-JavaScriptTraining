@@ -71,3 +71,31 @@
   .btn-padding{
     padding: 6px;
   }
+
+.link-btn{
+  text-decoration: none;
+}
+
+.task-links{
+  text-decoration: none;
+}
+.task-links:hover{
+  color: red;
+  text-decoration:underline;
+}
+.task-style{
+  position: absolute;
+  padding:50px;
+  top:30%;
+  left:30%;
+  width:30%;
+  height: 40%;
+  font-size: 20px;
+  border: 1px solid red;
+  border-radius: 50px;
+  box-shadow: 1px 10px 100px 10px red;
+}
+
+.task-info-div{
+  margin:30px;
+}

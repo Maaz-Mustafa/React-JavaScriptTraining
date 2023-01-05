@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
 const ToDoList = ({
@@ -12,8 +13,10 @@ const ToDoList = ({
     <div>
       <h1 className="header">To DO List</h1>
       <br />
-      <button className="btn-primary header" onClick={openDiv}>
-        Add a new Task
+      <button className="btn-primary header">
+        <Link to="/addTask" className="link-btn">
+          Add a new Task
+        </Link>
       </button>
       <br />
       {loading ? (
@@ -36,7 +39,14 @@ const ToDoList = ({
                       }}
                     />
                   </td>
-                  <td>{item.task}</td>
+                  <td>
+                    <Link
+                      className="task-links"
+                      to={`/openTask/${item.id}/${item.task}/${item.status}/${item.dueDtae}`}
+                    >
+                      {item.task}
+                    </Link>
+                  </td>
                   <td>{item.dueDtae}</td>
                   <td>{item.status ? "Completed" : "Active"}</td>
                   <td>
