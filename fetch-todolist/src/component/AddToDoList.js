@@ -1,30 +1,42 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
+import { postTodo } from "../services/todos.services.js";
 
 const AddToList = ({ openDiv }) => {
   const [task, setTask] = useState("");
   const [ddate, setDdate] = useState("");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const handleTask = (e) => {
     setTask(e.target.value);
   };
+
   const handleDdate = (e) => {
     setDdate(e.target.value);
   };
+
   const activity = {
     id: "",
     task: task,
     dueDtae: ddate,
     status: false,
   };
+  const { mutate: postTodoMutate, isLoading: postTodoLoading } = useMutation(
+    postTodo,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("todos");
+      },
+    }
+  );
+
   const handleAdd = () => {
-    fetch("http://localhost:8080/todo", {
-      method: "POST",
-      body: JSON.stringify(activity),
-      headers: { "content-type": "application/json" },
-    });
+    postTodoMutate(activity);
     navigate("/");
   };
+
   return (
     <div className="Modal">
       <div className="Modal-content">

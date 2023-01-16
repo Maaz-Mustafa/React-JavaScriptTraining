@@ -23,6 +23,36 @@
       "task": "Prashant's Wedding",
       "dueDtae": "2023-02-14",
       "status": false
+    },
+    {
+      "id": 5,
+      "task": "Get a Gym membership",
+      "dueDtae": "2023-01-18",
+      "status": false
+    },
+    {
+      "id": 7,
+      "task": "My Name is Khan",
+      "dueDtae": "2023-01-25",
+      "status": false
+    },
+    {
+      "id": 8,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-01-29",
+      "status": false
+    },
+    {
+      "id": 9,
+      "task": "Laundary",
+      "dueDtae": "2023-01-17",
+      "status": false
+    },
+    {
+      "id": 10,
+      "task": "Buy a Shoes from the cart",
+      "dueDtae": "2023-01-26",
+      "status": false
     }
   ]
 }

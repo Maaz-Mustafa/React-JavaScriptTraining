@@ -1,24 +1,20 @@
 import {memo} from 'react';
+import {SelectBox} from '../shared/SelectBox';
+
+
+const STATUS_OPTIONS=[{key:"All",value:"All"},{key:"Completed",value:"Completed"},{key:"Active",value:"Active"}];
+const SORT_OPTIONS=[{key:"A-Z",value:"asc"},{key:"Z-A",value:"desc"}]
+
 const FiltersComponent = ({handleStatusFilter,searchTask,handleOrder}) => {
-    
-    
     
     return ( <>
         <div className='filter-bar'><b>Filter :-</b></div>
         <label>Status : </label>
-        <select onChange={(e)=>{ handleStatusFilter(e.target.value)}}>
-            <option>Select One</option>
-            <option>All</option>
-            <option value="Completed">Completed</option>
-            <option value="Active">Active</option>
-        </select>
+        <SelectBox options={STATUS_OPTIONS} targetFunc={handleStatusFilter}/>
         <label>Search : </label>
         <input type="text" onKeyUp={(e)=>searchTask(e.target.value)} placeholder="Search Task"/> 
         <label>Sort : </label>
-        <select onChange={(e)=>{handleOrder(e.target.value)}}>
-            <option value="asc">A-Z</option>
-            <option value="desc">Z-A</option>
-        </select>
+        <SelectBox options={SORT_OPTIONS} targetFunc={handleOrder}/>
     </>);
 }
  

@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import { Filters } from "./Filters";
 import Loader from "./Loader";
 
-const ToDoList = ({
-  list,
-  openDelDiv,
-  changeStatus,
-  handleStatusFilter,
-  loading,
-  error,
-  searchTask,
-  handleOrder,
-}) => {
+const ToDoList = (props) => {
+  const {
+    list,
+    openDelDiv,
+    changeStatus,
+    handleStatusFilter,
+    loading,
+    error,
+    searchTask,
+    handleOrder,
+  } = props;
   return (
     <div>
       <h1 className="header">To DO List</h1>
@@ -34,10 +35,10 @@ const ToDoList = ({
         <div>
           <Loader />
         </div>
-      ) : error === "" ? (
+      ) : error === null ? (
         <div className="task-table">
           <table cellSpacing={10}>
-            {list.map((item) => {
+            {list?.map((item) => {
               return (
                 <tr key={item.id}>
                   <td>
@@ -53,7 +54,7 @@ const ToDoList = ({
                   <td>
                     <Link
                       className={`task-links ${item.status && "strike"}`}
-                      to={`/openTask/${item.id}/${item.task}/${item.status}/${item.dueDtae}`}
+                      to={`/openTask/${item.id}`}
                     >
                       {item.task}
                     </Link>
