@@ -1,47 +1,62 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ToDoList from "./ToDoList";
-import useFetch from "../customHook/useFetch";
 import DeleteFromList from "./DeleteFromList";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getTodos, deleteTodo } from "../services/todos.services.js";
 import "./styling.css";
 
 const Home = () => {
-  const [list, setList] = useState([]);
   const [idToDel, setIdToDel] = useState();
   const [isDelBlockHidden, setIsDelBlockHidden] = useState(false);
-  const { loading, error, data } = useFetch();
-  const [displayTodos, setTodos] = useState(list);
+  const pageSize = 4;
+  const [pageNumber, setPageNumber] = useState(1);
+  const [displayTodos, setTodos] = useState([]);
   const [order, setOrder] = useState();
+  const queryClient = useQueryClient();
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    setList(data);
-  }, [data]);
-
-  useEffect(() => {}, [displayTodos]);
+  const { data, isLoading, error } = useQuery(
+    ["todos", pageNumber, pageSize, order, search],
+    () => {
+      return getTodos({
+        _page: pageNumber,
+        _limit: pageSize,
+        _sort: "task",
+        _order: order,
+        task_like: search,
+      });
+    }
+  );
 
   const changeStatus = (check, id) => {
-    const updatedStatusArray = list.map((obj) => {
+    const updatedStatusArray = data.map((obj) => {
       if (obj.id === id) {
         obj.status = check;
       }
       return obj;
     });
-    setList(updatedStatusArray);
+    setTodos(updatedStatusArray);
   };
 
+  const { mutate: deleteTodoMutation } = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
   const handleDelete = (id) => {
-    const resltArray = displayTodos.filter(
-      (filteredItem) => id !== filteredItem.id
-    );
-    setTodos(resltArray);
-    openDelDiv();
+    deleteTodoMutation(id);
+    openDelDiv(null);
   };
+
   const openDelDiv = (id) => {
-    let condition = !isDelBlockHidden ? true : false;
-    setIsDelBlockHidden(condition);
-    setIdToDel(id);
+    setIsDelBlockHidden(!isDelBlockHidden);
+    id && setIdToDel(id);
   };
-  const handleStatusFilter = (status) => {
-    let completedTask = list;
+
+  const handleStatusFilter = (e) => {
+    let completedTask = data;
+    let status = e.target.value;
 
     if (status === "Completed") {
       completedTask = completedTask.filter((task) => task.status);
@@ -50,31 +65,25 @@ const Home = () => {
     }
     setTodos(completedTask);
   };
-  const searchTask = (search) => {
-    let searchedList = list;
-    searchedList = searchedList.filter((item) => {
-      return item.task.includes(search);
-    });
-    setTodos(searchedList);
+
+  const searchTask = (value) => {
+    setSearch(value);
   };
+
+  const handleOrder = (event) => {
+    setOrder(event.target.value);
+  };
+
   useEffect(() => {
-    order === "asc"
-      ? displayTodos.sort((a, b) => {
-          return a.task > b.task ? -1 : 1;
-        })
-      : displayTodos.sort((a, b) => (a.task > b.task ? 1 : -1));
-    console.log(displayTodos);
-  }, [order]);
-  const handleOrder = (value) => {
-    setOrder(value);
-  };
+    setTodos(data);
+  }, [data]);
   return (
     <div>
       <div className="navBar"></div>
       <div className="Home">
         <ToDoList
           error={error}
-          loading={loading}
+          loading={isLoading}
           list={displayTodos}
           openDelDiv={openDelDiv}
           changeStatus={changeStatus}
@@ -83,6 +92,23 @@ const Home = () => {
           searchTask={searchTask}
           handleOrder={handleOrder}
         />
+        <div className="header">
+          <button
+            className="btn btn-margin"
+            onClick={() => setPageNumber(pageNumber - 1)}
+            disabled={pageNumber === 1}
+          >
+            prev
+          </button>
+          {pageNumber}
+          <button
+            className="btn btn-margin"
+            onClick={() => setPageNumber(pageNumber + 1)}
+            disabled={data?.length < pageSize}
+          >
+            next
+          </button>
+        </div>
 
         <div
           className="Modal"
