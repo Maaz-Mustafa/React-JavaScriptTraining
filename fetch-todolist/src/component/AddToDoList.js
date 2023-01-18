@@ -1,7 +1,8 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { postTodo } from "../services/todos.services.js";
+import AddTaskForm from "./AddTaskForm.js";
 
 const AddToList = ({ openDiv }) => {
   const [task, setTask] = useState("");
@@ -17,25 +18,25 @@ const AddToList = ({ openDiv }) => {
     setDdate(e.target.value);
   };
 
-  const activity = {
-    id: "",
-    task: task,
-    dueDtae: ddate,
-    status: false,
-  };
-  const { mutate: postTodoMutate, isLoading: postTodoLoading } = useMutation(
-    postTodo,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todos");
-      },
-    }
-  );
+  // const activity = {
+  //   id: "",
+  //   task: task,
+  //   dueDtae: ddate,
+  //   status: false,
+  // };
+  // const { mutate: postTodoMutate, isLoading: postTodoLoading } = useMutation(
+  //   postTodo,
+  //   {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries("todos");
+  //     },
+  //   }
+  // );
 
-  const handleAdd = () => {
-    postTodoMutate(activity);
-    navigate("/");
-  };
+  // const handleAdd = () => {
+  //   postTodoMutate(activity);
+  //   navigate("/");
+  // };
 
   return (
     <div className="Modal">
@@ -45,7 +46,7 @@ const AddToList = ({ openDiv }) => {
           <Link to="/"> X </Link>
         </button>
         <hr />
-        <form>
+        {/* <form>
           <table>
             <tr>
               <td>Task</td>
@@ -72,7 +73,8 @@ const AddToList = ({ openDiv }) => {
               </td>
             </tr>
           </table>
-        </form>
+        </form> */}
+        <AddTaskForm />
       </div>
     </div>
   );

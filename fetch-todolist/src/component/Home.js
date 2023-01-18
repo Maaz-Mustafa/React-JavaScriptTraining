@@ -67,25 +67,12 @@ const Home = () => {
   };
 
   const searchTask = (value) => {
-    // let searchedList = data;
-    // searchedList = searchedList.filter((item) => {
-    //   return item.task.includes(search);
-    // });
-    // setTodos(searchedList);
     setSearch(value);
   };
 
   const handleOrder = (event) => {
     setOrder(event.target.value);
   };
-
-  // useEffect(() => {
-  //   order === "asc"
-  //     ? displayTodos.sort((a, b) => {
-  //         return a.task > b.task ? -1 : 1;
-  //       })
-  //     : displayTodos.sort((a, b) => (a.task > b.task ? 1 : -1));
-  // }, [order]);
 
   useEffect(() => {
     setTodos(data);
