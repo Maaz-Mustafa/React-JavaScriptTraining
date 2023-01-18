@@ -12,11 +12,15 @@
 .btn-danger{
     background-color: red;
     color: white;
+    padding:8px;
+    border-radius: 25px;
 }
 
 .btn-primary{
-    background-color: rgb(29, 136, 224);
+    background-color:skyblue;
     color: white;
+    padding:8px;
+    border-radius: 25px;
 }
 
 .header{
@@ -62,6 +66,9 @@
   .text-danger{
     color:red;
   }
+  .text-success{
+    color:green;
+  }
 
   .modal-style{
     margin:50px;
@@ -71,3 +78,47 @@
   .btn-padding{
     padding: 6px;
   }
+
+.link-btn{
+  text-decoration: none;
+}
+
+.task-links{
+  text-decoration: none;
+  color:black;
+}
+.task-links:hover{
+  color: blue;
+  text-decoration:underline;
+}
+.task-style{
+  position: absolute;
+  padding:50px;
+  top:30%;
+  left:30%;
+  width:auto;
+  height: 40%;
+  font-size: 20px;
+  border: 1px solid red;
+  border-radius: 50px;
+  box-shadow: 1px 10px 100px 10px red;
+}
+
+.task-info-div{
+  margin:30px;
+}
+.strike{
+  text-decoration: line-through;
+  color: red;
+}
+.filter-bar{
+  margin:15px;
+}
+.filter-bar select,input{
+  height: 28px;
+  margin-right: 20px;
+}
+.filter-bar label{
+  margin-right: 5px;
+  font-size: \;
+}

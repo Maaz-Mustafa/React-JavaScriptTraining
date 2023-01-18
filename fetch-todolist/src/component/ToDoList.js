@@ -1,27 +1,41 @@
+import { Link } from "react-router-dom";
+import { Filters } from "./Filters";
 import Loader from "./Loader";
 
 const ToDoList = ({
   list,
   openDelDiv,
   changeStatus,
-  openDiv,
+  handleStatusFilter,
   loading,
   error,
+  searchTask,
+  handleOrder,
 }) => {
   return (
     <div>
       <h1 className="header">To DO List</h1>
       <br />
-      <button className="btn-primary header" onClick={openDiv}>
-        Add a new Task
+      <button className="btn-primary header">
+        <Link to="/addTask" className="link-btn">
+          Add a new Task
+        </Link>
       </button>
       <br />
+      <div className="filter-bar">
+        <Filters
+          handleStatusFilter={handleStatusFilter}
+          searchTask={searchTask}
+          handleOrder={handleOrder}
+        />
+      </div>
+      <hr />
       {loading ? (
         <div>
           <Loader />
         </div>
       ) : error === "" ? (
-        <div>
+        <div className="task-table">
           <table cellSpacing={10}>
             {list.map((item) => {
               return (
@@ -36,13 +50,25 @@ const ToDoList = ({
                       }}
                     />
                   </td>
-                  <td>{item.task}</td>
+                  <td>
+                    <Link
+                      className={`task-links ${item.status && "strike"}`}
+                      to={`/openTask/${item.id}/${item.task}/${item.status}/${item.dueDtae}`}
+                    >
+                      {item.task}
+                    </Link>
+                  </td>
                   <td>{item.dueDtae}</td>
-                  <td>{item.status ? "Completed" : "Active"}</td>
+                  <td
+                    className={`${
+                      item.status ? "text-danger" : "text-success"
+                    }`}
+                  >
+                    {item.status ? "Completed" : "Active"}
+                  </td>
                   <td>
                     <button
                       onClick={() => {
-                        // handleDelete(item.id);
                         openDelDiv(item.id);
                       }}
                       className="btn btn-danger"

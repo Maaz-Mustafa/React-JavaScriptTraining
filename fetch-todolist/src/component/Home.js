@@ -1,19 +1,22 @@
-import { useState, useEffect } from "react";
-import AddToList from "./AddToDoList";
+import { useState, useEffect, useMemo } from "react";
 import ToDoList from "./ToDoList";
-import "./styling.css";
 import useFetch from "../customHook/useFetch";
 import DeleteFromList from "./DeleteFromList";
+import "./styling.css";
 
 const Home = () => {
   const [list, setList] = useState([]);
   const [idToDel, setIdToDel] = useState();
-  const [isBlockHidden, setIsBlockHidden] = useState(false);
   const [isDelBlockHidden, setIsDelBlockHidden] = useState(false);
   const { loading, error, data } = useFetch();
+  const [displayTodos, setTodos] = useState(list);
+  const [order, setOrder] = useState();
+
   useEffect(() => {
     setList(data);
   }, [data]);
+
+  useEffect(() => {}, [displayTodos]);
 
   const changeStatus = (check, id) => {
     const updatedStatusArray = list.map((obj) => {
@@ -26,32 +29,45 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    const resltArray = list.filter((filteredItem) => id !== filteredItem.id);
-    setList(resltArray);
+    const resltArray = displayTodos.filter(
+      (filteredItem) => id !== filteredItem.id
+    );
+    setTodos(resltArray);
     openDelDiv();
-  };
-  const openDiv = () => {
-    let condition = !isBlockHidden ? true : false;
-    setIsBlockHidden(condition);
   };
   const openDelDiv = (id) => {
     let condition = !isDelBlockHidden ? true : false;
     setIsDelBlockHidden(condition);
     setIdToDel(id);
   };
-  const handleAdd = (task, ddate) => {
-    if (task !== "" && ddate !== "") {
-      const obj = {
-        id: list.length + 1,
-        task: task,
-        dueDtae: ddate.toString(),
-        status: false,
-      };
-      setList([...list, obj]);
-      setIsBlockHidden(false);
-    }
-  };
+  const handleStatusFilter = (status) => {
+    let completedTask = list;
 
+    if (status === "Completed") {
+      completedTask = completedTask.filter((task) => task.status);
+    } else if (status === "Active") {
+      completedTask = completedTask.filter((task) => !task.status);
+    }
+    setTodos(completedTask);
+  };
+  const searchTask = (search) => {
+    let searchedList = list;
+    searchedList = searchedList.filter((item) => {
+      return item.task.includes(search);
+    });
+    setTodos(searchedList);
+  };
+  useEffect(() => {
+    order === "asc"
+      ? displayTodos.sort((a, b) => {
+          return a.task > b.task ? -1 : 1;
+        })
+      : displayTodos.sort((a, b) => (a.task > b.task ? 1 : -1));
+    console.log(displayTodos);
+  }, [order]);
+  const handleOrder = (value) => {
+    setOrder(value);
+  };
   return (
     <div>
       <div className="navBar"></div>
@@ -59,18 +75,15 @@ const Home = () => {
         <ToDoList
           error={error}
           loading={loading}
-          list={list}
-          openDiv={openDiv}
+          list={displayTodos}
+          openDelDiv={openDelDiv}
           changeStatus={changeStatus}
           handleDelete={handleDelete}
-          openDelDiv={openDelDiv}
+          handleStatusFilter={handleStatusFilter}
+          searchTask={searchTask}
+          handleOrder={handleOrder}
         />
-        <div
-          className="Modal"
-          style={{ display: isBlockHidden ? "block" : "none" }}
-        >
-          <AddToList handleAdd={handleAdd} openDiv={openDiv} />
-        </div>
+
         <div
           className="Modal"
           style={{ display: isDelBlockHidden ? "block" : "none" }}
