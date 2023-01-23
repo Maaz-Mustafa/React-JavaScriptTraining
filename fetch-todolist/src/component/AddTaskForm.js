@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { RQ_KEY_TODOS } from "../constants/magic_constants.js";
 import { postTodo } from "../services/todos.services.js";
 import FormikControl from "../shared/FormikControl";
 
@@ -19,7 +20,7 @@ const AddTaskForm = () => {
     postTodo,
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("todos");
+        queryClient.invalidateQueries(RQ_KEY_TODOS);
       },
     }
   );

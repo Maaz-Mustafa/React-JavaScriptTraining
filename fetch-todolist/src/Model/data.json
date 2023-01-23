@@ -65,6 +65,12 @@
       "task": "Buy a Track from zara",
       "dueDtae": "2023-01-20",
       "status": false
+    },
+    {
+      "id": 13,
+      "task": "add skills to CV",
+      "dueDtae": "2023-01-20",
+      "status": false
     }
   ]
 }
