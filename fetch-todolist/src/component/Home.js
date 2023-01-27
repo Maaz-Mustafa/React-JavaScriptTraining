@@ -46,13 +46,13 @@ const Home = () => {
   );
 
   const changeStatus = (check, id) => {
-    const updatedStatusArray = data.map((obj) => {
+    const object = data.find((obj) => {
       if (obj.id === id) {
+        console.log("id", id, "check ", check);
         obj.status = check;
       }
-      return obj;
     });
-    dispatch({ type: ACTIONS.SET_TODOS, payload: updatedStatusArray });
+    dispatch({ type: ACTIONS.SET_TODOS, payload: data });
   };
 
   const { mutate: deleteTodoMutation } = useMutation(deleteTodo, {
@@ -136,5 +136,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

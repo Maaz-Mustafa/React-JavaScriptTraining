@@ -5,7 +5,7 @@ export const reducerFunction = (state, action) => {
     case ACTIONS.SET_PAGE_NO:
       return { ...state, pageNumber: action.payload };
     case ACTIONS.SET_TODOS:
-      return { ...state, todos: action.payload };
+      return { todos: action.payload };
     case ACTIONS.TOGGLE_DELETE_BLOCK:
       return {
         ...state,
