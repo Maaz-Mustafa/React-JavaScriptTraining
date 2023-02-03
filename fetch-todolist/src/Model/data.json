@@ -53,6 +53,66 @@
       "task": "Buy a Shoes from the cart",
       "dueDtae": "2023-01-26",
       "status": false
+    },
+    {
+      "id": 11,
+      "task": "Buy a Bottle ",
+      "dueDtae": "2023-01-31",
+      "status": false
+    },
+    {
+      "id": 12,
+      "task": "Buy a Track from zara",
+      "dueDtae": "2023-01-20",
+      "status": false
+    },
+    {
+      "id": 13,
+      "task": "add skills to CV",
+      "dueDtae": "2023-01-20",
+      "status": false
+    },
+    {
+      "id": 14,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-02-15",
+      "status": false
+    },
+    {
+      "id": 15,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-02-01",
+      "status": false
+    },
+    {
+      "id": 16,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-02-01",
+      "status": false
+    },
+    {
+      "id": 17,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-02-01",
+      "status": false
+    },
+    {
+      "id": 18,
+      "task": "Go D-Mart To Buy Grocery",
+      "dueDtae": "2023-02-04",
+      "status": false
+    },
+    {
+      "id": 19,
+      "task": "dfgdfgrfdeg",
+      "dueDtae": "2023-02-04",
+      "status": false
+    },
+    {
+      "id": 20,
+      "task": "iujdsjikdf",
+      "dueDtae": "2023-02-04",
+      "status": false
     }
   ]
 }

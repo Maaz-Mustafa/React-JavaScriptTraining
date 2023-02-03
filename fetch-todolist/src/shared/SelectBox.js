@@ -4,7 +4,11 @@ const SelectBoxComponent = ({ options, targetFunc }) => {
   return (
     <select onChange={targetFunc}>
       {options.map((item) => {
-        return <option value={item.value}>{item.key}</option>;
+        return (
+          <option key={item.key} value={item.value}>
+            {item.key}
+          </option>
+        );
       })}
     </select>
   );

@@ -6,7 +6,6 @@ const STATUS_OPTIONS=[{key:"All",value:"All"},{key:"Completed",value:"Completed"
 const SORT_OPTIONS=[{key:"A-Z",value:"asc"},{key:"Z-A",value:"desc"}]
 
 const FiltersComponent = ({handleStatusFilter,searchTask,handleOrder}) => {
-    
     return ( <>
         <div className='filter-bar'><b>Filter :-</b></div>
         <label>Status : </label>
@@ -17,5 +16,5 @@ const FiltersComponent = ({handleStatusFilter,searchTask,handleOrder}) => {
         <SelectBox options={SORT_OPTIONS} targetFunc={handleOrder}/>
     </>);
 }
- 
+
 export  const Filters=memo(FiltersComponent);
