@@ -53,6 +53,24 @@
       "task": "Buy a Shoes from the cart",
       "dueDtae": "2023-01-26",
       "status": false
+    },
+    {
+      "id": 11,
+      "task": "Buy a Bottle ",
+      "dueDtae": "2023-01-31",
+      "status": false
+    },
+    {
+      "id": 12,
+      "task": "Buy a Track from zara",
+      "dueDtae": "2023-01-20",
+      "status": false
+    },
+    {
+      "id": 13,
+      "task": "add skills to CV",
+      "dueDtae": "2023-01-20",
+      "status": false
     }
   ]
 }

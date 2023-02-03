@@ -1,4 +1,4 @@
-const DeleteFromList = ({ handleDelete, openDelDiv, idToDel }) => {
+const DeleteFromList = ({ handleDelete, openDelDiv }) => {
   return (
     <div className="Modal-content">
       Delete a Task

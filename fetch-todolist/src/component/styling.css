@@ -21,6 +21,7 @@
     color: white;
     padding:8px;
     border-radius: 25px;
+    margin:10px
 }
 
 .header{
@@ -28,7 +29,7 @@
 }
 .btn-div-close{
     position:relative;
-    left:50%;
+    left:65%;
     border: 1px solid red;
     border-color: red;
     color:red;
@@ -53,15 +54,15 @@
     backdrop-filter: blur(8px);
   }
   .Modal-content {
-    position: fixed;
-    left: 40%;
-    top: 35%;
+    position: relative;
+    left: 0%;
+    top: 25%;
     background-color:antiquewhite;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
     max-width: 400px;
-    height: 200px;
+    height: 250px;
   }
   .text-danger{
     color:red;
@@ -125,4 +126,12 @@
 .btn-margin{
   margin-left: 5px;
   margin-right: 5px;
+}
+.form-control label:after{
+  content:"\a";
+  white-space: pre;
+}
+.form-control input,textarea{
+  margin-left: 5px;
+  width:100%
 }

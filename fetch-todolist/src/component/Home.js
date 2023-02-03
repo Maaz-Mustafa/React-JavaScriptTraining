@@ -1,22 +1,43 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useReducer, createContext } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import ToDoList from "./ToDoList";
 import DeleteFromList from "./DeleteFromList";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import { getTodos, deleteTodo } from "../services/todos.services.js";
+import { reducerFunction } from "../reducers/todoapp.reducers.js";
+
+import { ACTIONS } from "../constants/Actions";
+import { RQ_KEY_TODOS } from "../constants/magic_constants";
+
 import "./styling.css";
 
 const Home = () => {
-  const [idToDel, setIdToDel] = useState();
-  const [isDelBlockHidden, setIsDelBlockHidden] = useState(false);
+  const [state, dispatch] = useReducer(reducerFunction, {
+    pageNumber: 1,
+    todos: [],
+    isDelBlockHidden: false,
+    idToDelete: undefined,
+    order: undefined,
+    search: "",
+  });
+  const {
+    isDelBlockHidden,
+    pageNumber,
+    todos: displayTodos,
+    idToDelete,
+    order,
+    search,
+  } = state;
+
+  const setPageNumber = (pgNumber) =>
+    dispatch({ type: ACTIONS.SET_PAGE_NO, payload: pgNumber });
+
   const pageSize = 4;
-  const [pageNumber, setPageNumber] = useState(1);
-  const [displayTodos, setTodos] = useState([]);
-  const [order, setOrder] = useState();
   const queryClient = useQueryClient();
-  const [search, setSearch] = useState("");
 
   const { data, isLoading, error } = useQuery(
-    ["todos", pageNumber, pageSize, order, search],
+    [RQ_KEY_TODOS, pageNumber, pageSize, order, search],
     () => {
       return getTodos({
         _page: pageNumber,
@@ -29,29 +50,32 @@ const Home = () => {
   );
 
   const changeStatus = (check, id) => {
-    const updatedStatusArray = data.map((obj) => {
+    const object = data.find((obj) => {
       if (obj.id === id) {
+        console.log("id", id, "check ", check);
         obj.status = check;
       }
-      return obj;
     });
-    setTodos(updatedStatusArray);
+    dispatch({ type: ACTIONS.SET_TODOS, payload: data });
   };
 
   const { mutate: deleteTodoMutation } = useMutation(deleteTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries(RQ_KEY_TODOS);
     },
   });
 
-  const handleDelete = (id) => {
-    deleteTodoMutation(id);
+  const handleDelete = () => {
+    deleteTodoMutation(idToDelete);
     openDelDiv(null);
   };
 
+  const toggleDeleteBlock = (id) => {
+    return { type: ACTIONS.TOGGLE_DELETE_BLOCK, payload: id };
+  };
+
   const openDelDiv = (id) => {
-    setIsDelBlockHidden(!isDelBlockHidden);
-    id && setIdToDel(id);
+    dispatch(toggleDeleteBlock(id));
   };
 
   const handleStatusFilter = (e) => {
@@ -63,19 +87,19 @@ const Home = () => {
     } else if (status === "Active") {
       completedTask = completedTask.filter((task) => !task.status);
     }
-    setTodos(completedTask);
+    dispatch({ type: ACTIONS.SET_TODOS, payload: completedTask });
   };
 
   const searchTask = (value) => {
-    setSearch(value);
+    dispatch({ type: ACTIONS.SET_SEARCH, payload: value });
   };
 
   const handleOrder = (event) => {
-    setOrder(event.target.value);
+    dispatch({ type: ACTIONS.SET_ORDER, payload: event.target.value });
   };
 
   useEffect(() => {
-    setTodos(data);
+    dispatch({ type: ACTIONS.SET_TODOS, payload: data });
   }, [data]);
   return (
     <div>
@@ -114,14 +138,10 @@ const Home = () => {
           className="Modal"
           style={{ display: isDelBlockHidden ? "block" : "none" }}
         >
-          <DeleteFromList
-            handleDelete={() => handleDelete(idToDel)}
-            openDelDiv={openDelDiv}
-          />
+          <DeleteFromList handleDelete={handleDelete} openDelDiv={openDelDiv} />
         </div>
       </div>
     </div>
   );
 };
-
 export default Home;
