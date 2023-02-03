@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MAGICCONSTANTS } from "../constants/CONSTANTS.js";
 
 import AddTaskForm from "./AddTaskForm.js";
 
@@ -8,7 +9,7 @@ const AddToList = () => {
       <div className="Modal-content">
         Add a new Task{" "}
         <button className=" btn-div-close">
-          <Link to="/"> X </Link>
+          <Link to={MAGICCONSTANTS.HOME}> X </Link>
         </button>
         <hr />
         <AddTaskForm />

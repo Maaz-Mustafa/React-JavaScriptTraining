@@ -1,15 +1,16 @@
 import {} from "formik";
+import { CONTROLS } from "../constants/CONSTANTS";
 import DatePicker from "./DatePicker";
 import Input from "./Input";
 import Textarea from "./Textarea";
 const FormikControl = (props) => {
   const { control, ...rest } = props;
   switch (control) {
-    case "input":
+    case CONTROLS.INPUT:
       return <Input {...rest} />;
-    case "date":
+    case CONTROLS.DATE:
       return <DatePicker {...rest} />;
-    case "textarea":
+    case CONTROLS.TEXTAREA:
       return <Textarea {...rest} />;
     default:
       return null;

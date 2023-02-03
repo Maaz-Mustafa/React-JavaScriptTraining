@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MAGICCONSTANTS } from "../constants/CONSTANTS";
 import { Filters } from "./Filters";
 import Loader from "./Loader";
 
@@ -54,7 +55,7 @@ const ToDoList = (props) => {
                   <td>
                     <Link
                       className={`task-links ${item.status && "strike"}`}
-                      to={`/openTask/${item.id}`}
+                      to={MAGICCONSTANTS.OPEN_TASK / item.id}
                     >
                       {item.task}
                     </Link>

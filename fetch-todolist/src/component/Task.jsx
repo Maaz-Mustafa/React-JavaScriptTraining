@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
+import { MAGICCONSTANTS } from "../constants/CONSTANTS";
 import { getTodoById } from "../services/todos.services";
 
 const Task = () => {
@@ -15,7 +16,7 @@ const Task = () => {
             <div className="task-info-div">Due Date :   {data?.dueDtae}</div>
             <div className="task-info-div">Status   :   {data?.status?"Completed":"Active"}</div>
             </pre>
-            <div className="task-info-div"><Link to="/"> Go Back to To-Do-List</Link></div>
+            <div className="task-info-div"><Link to={MAGICCONSTANTS.HOME}> Go Back to To-Do-List</Link></div>
         </div>
      );
 }
