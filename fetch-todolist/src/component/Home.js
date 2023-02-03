@@ -1,9 +1,12 @@
 import { useEffect, useReducer, createContext } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import ToDoList from "./ToDoList";
 import DeleteFromList from "./DeleteFromList";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import { getTodos, deleteTodo } from "../services/todos.services.js";
 import { reducerFunction } from "../reducers/todoapp.reducers.js";
+
 import { ACTIONS } from "../constants/Actions";
 import { RQ_KEY_TODOS } from "../constants/magic_constants";
 
@@ -14,17 +17,18 @@ const Home = () => {
     pageNumber: 1,
     todos: [],
     isDelBlockHidden: false,
-    idToDel: undefined,
+    idToDelete: undefined,
     order: undefined,
     search: "",
   });
-
-  const isDelBlockHidden = state.isDelBlockHidden;
-  const pageNumber = state.pageNumber;
-  const displayTodos = state.todos;
-  const idToDel = state.idToDel;
-  const order = state.order;
-  const search = state.search;
+  const {
+    isDelBlockHidden,
+    pageNumber,
+    todos: displayTodos,
+    idToDelete,
+    order,
+    search,
+  } = state;
 
   const setPageNumber = (pgNumber) =>
     dispatch({ type: ACTIONS.SET_PAGE_NO, payload: pgNumber });
@@ -62,12 +66,16 @@ const Home = () => {
   });
 
   const handleDelete = () => {
-    deleteTodoMutation(idToDel);
+    deleteTodoMutation(idToDelete);
     openDelDiv(null);
   };
 
+  const toggleDeleteBlock = (id) => {
+    return { type: ACTIONS.TOGGLE_DELETE_BLOCK, payload: id };
+  };
+
   const openDelDiv = (id) => {
-    dispatch({ type: ACTIONS.TOGGLE_DELETE_BLOCK, payload: id });
+    dispatch(toggleDeleteBlock(id));
   };
 
   const handleStatusFilter = (e) => {

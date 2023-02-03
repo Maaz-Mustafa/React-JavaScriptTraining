@@ -1,9 +1,11 @@
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
+
 import { getTodoById } from "../services/todos.services";
 
 const Task = () => {
     const {id}=useParams()
+    
     const {data,error}=useQuery("todo",()=>
         getTodoById(id),{staleTime:0}
     )
