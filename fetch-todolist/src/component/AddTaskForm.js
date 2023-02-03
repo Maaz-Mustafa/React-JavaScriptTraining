@@ -51,7 +51,12 @@ const AddTaskForm = () => {
       {(formik) => {
         return (
           <Form>
-            <FormikControl control="input" name="task" label="Title : " />
+            <FormikControl
+              control="input"
+              data-testid="input-1"
+              name="task"
+              label="Title : "
+            />
             <FormikControl
               control="textarea"
               name="description"
