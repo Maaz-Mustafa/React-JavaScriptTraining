@@ -25,8 +25,7 @@ const AddTaskForm = () => {
     }
   );
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = (values, action) => {
     const activity = {
       id: "",
       task: values.task,
@@ -44,6 +43,7 @@ const AddTaskForm = () => {
 
   return (
     <Formik
+      enableReinitialize
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
@@ -52,6 +52,7 @@ const AddTaskForm = () => {
         return (
           <Form>
             <FormikControl
+              role="tab"
               control="input"
               data-testid="input-1"
               name="task"
@@ -62,7 +63,12 @@ const AddTaskForm = () => {
               name="description"
               label="Description :"
             />
-            <FormikControl control="date" name="duedate" label="Due Date : " />
+            <FormikControl
+              control="date"
+              name="duedate"
+              label="Due Date : "
+              data-testid="date-1"
+            />
             <button type="submit" className="btn btn-primary" name="add">
               Add
             </button>

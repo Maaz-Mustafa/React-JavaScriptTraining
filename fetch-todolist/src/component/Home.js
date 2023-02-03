@@ -28,7 +28,7 @@ const Home = () => {
 
   const setPageNumber = (pgNumber) =>
     dispatch({ type: ACTIONS.SET_PAGE_NO, payload: pgNumber });
-
+  console.log("page", state.pageNumber);
   const pageSize = 4;
   const queryClient = useQueryClient();
 
@@ -90,6 +90,7 @@ const Home = () => {
     dispatch({ type: ACTIONS.SET_ORDER, payload: event.target.value });
   };
 
+  const handleDecrement = () => setPageNumber(pageNumber - 1);
   useEffect(() => {
     dispatch({ type: ACTIONS.SET_TODOS, payload: data });
   }, [data]);
@@ -111,7 +112,7 @@ const Home = () => {
         <div className="header">
           <button
             className="btn btn-margin"
-            onClick={() => setPageNumber(pageNumber - 1)}
+            onClick={handleDecrement}
             disabled={pageNumber === 1}
           >
             prev

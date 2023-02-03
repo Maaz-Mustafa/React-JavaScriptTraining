@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./component/Home";
 import AddToList from "./component/AddToDoList";
 import Task from "./component/Task";
@@ -17,3 +17,8 @@ function App() {
 }
 
 export default App;
+
+export const LocationDisplay = () => {
+  const location = useLocation();
+  return <div data-testid="location">{location.pathname}</div>;
+};
